@@ -36,11 +36,51 @@ D 继承 B
 
 static const mutable
 
-数据成员初始化不能使用圆括号的方式进行初始化
+**数据成员初始化**
 
-static 数据成员必须在类定义之外初始化
+1. **非静态成员** C++11之前不能在类内进行初始化，C++11起可以在类内直接进行初始化，初始化时只能使用 `=` 或者 `{}` 初始化，不能使用 `()`
+
+   ```C++
+   class MyClass {
+       int x = 1;
+       vector<int> arr = vector<int>arr(10);
+       vector<int> arr = {0, 1, 2, 3, 4}; // 列表初始化
+       // vector<int> arrr(10) ❌
+   }
+   ```
+
+2. **静态非常量**成员只能在类定义之外初始化
+
+   ```c++
+   class MyClass {
+       static int x;
+   };
+   int MyClass::x = 0;
+   ```
+
+3. **静态常量成员**
+
+   ```C++
+   //C++11 之前任何类型静态常量成员都可以在类内初始化
+   class MyClass {
+       static const int x = 0;
+       static const float  y= 1.0f;
+   }
+   //C++11 起只有整形或者静态constexpr成员才可以在类内初始化
+   class MyClass {
+       static const int x = 0;
+       static constexpr float y = 1.0f;
+       // static const float z = 1.0f; ❌
+       static const float z;
+   }
+   const float MyClass::z = 1.0f;
+   ```
+
+   
 
 mutable mutable数据成员在任何时候都是可变的
+
+
 
 #### 成员函数
 
@@ -83,7 +123,7 @@ final 禁止派生类重写
 
 **隐式类型转换构造函数**
 
-在进行拷贝形式的初始化 (用=) 时，编译器会调用一个实参调用的构造函数自动进行类型转换，**explicit** 关键字可以禁止隐式转换，例如 vector 的构造函数 vector<>(n)
+在进行拷贝形式的初始化 (用=) 时，编译器会调用一个实参调用的构造函数自动进行类型转换，**explicit** 关键字可以禁止隐式转换，例如 vector 的构造函数 vector\<T\>(n)
 
 ```C++
 class Integer {
@@ -191,9 +231,7 @@ friend  类可以将其他类或者函数声明为**友元**，以使它们访�
 
 #### 抽象类
 
-包含至少一个**纯虚函数**的类， 不能实例化
-
-**纯抽象类** 所有成员函数都是纯虚函数
+ 
 
 #### 聚合类
 
@@ -848,7 +886,7 @@ goodbit: 流处于未出错错误
 
 标准库定义了一组**操作符**来修改流的格式状态，操作符改变流的格式状态，永久生效。
 
-endl ends flush boolalph/noboolalpha dec hex oct 
+endl ends flush boolalpha/noboolalpha dec hex oct 
 
 #### 管理输出缓冲
 
@@ -1428,7 +1466,7 @@ default_random_engine
 
 **左值引用**
 
- 引用即别名，初始化 const 引用时，允许使用任意表达式类型作为初始值，只要该表达式的结果能转换成引用类型即可，const 引用可以绑定非常量对象，字面值，或者一个表达式（实际上绑定了一个 **临时量 temporary**）
+引用即别名，初始化 const 引用时，允许使用任意表达式类型作为初始值，只要该表达式的结果能转换成引用类型即可，const 引用可以绑定非常量对象，字面值，或者一个表达式（实际上绑定了一个 **临时量 temporary**）
 
 **右值引用** 
 
@@ -1666,6 +1704,8 @@ using 指示具有将命名空间成员提升到包含命名空间本身和 usin
 
 ### 初始化
 
+[类内数据成员初始化](####属性/数据成员)
+
 根据变量类型不同可分为，内置类型初始化，对象初始化，数组初始化
 
 根据初始化方法不同可以分为，默认初始化、直接初始化、拷贝初始化、初始化列表初始化 initializer_list
@@ -1691,13 +1731,14 @@ OBJ obj3(obj2); // 拷贝构造函数
 OBJ obj4 = obj3; // 拷贝构造函数
 OBJ obj5 = var; // 单参构造函数, 隐式类型转换构造函数
 OBJ obj6(args); // 其它带参数构造函数
+OBJ obj6 = OBJ(args); // 其它带参数构造函数
 OBJ obj7{}; // 默认构造函数
 OBJ obj8 = {}; // 默认构造函数
 OBJ obj8{obj7}; // 拷贝构造函数
 OBJ obj10 = {obj7}; // 拷贝构造函数
 OBJ obj11{var}; // 单参构造函数
 OBJ obj12 = {var}; // 单参构造函数
-OBJ obj13{args}; // 其他构造函数 或 initializer_list<T> 构造函数
+OBJ obj13{args}; // 其他构造函数 或 initializer_list<T> 构造函数 initializer_list<T> 构造函数优先级高
 OBJ obj14 = {args}; // 其他构造函数 或 initializer_list<T> 构造函数
 
 // {}带不带赋值运算符含义都一样
