@@ -1,8 +1,8 @@
 [toc]
 
-## OpenGL 基本概念
+# OpenGL 基本概念
 
-### 什么是OpenGL
+## 什么是 OpenGL
 
 OpenGL是一个由[Khronos组织](http://www.khronos.org/)制定并维护的规范(Specification)，OpenGL规范严格规定了每个函数该如何执行，以及它们的输出值。至于内部具体每个函数是如何实现(Implement)的，将由OpenGL库的开发者自行决定，实际的OpenGL库的开发者通常是显卡的生产商
 
@@ -14,7 +14,7 @@ OpenGL是一个由[Khronos组织](http://www.khronos.org/)制定并维护的规�
 
 **客户端/服务器架构**
 
-### OpenGL的对象
+## OpenGL 的对象
 
 在OpenGL中一个对象是指一些选项的集合，它代表OpenGL状态的一个子集，每一个对象用一个无符号整型标记
 
@@ -49,7 +49,7 @@ glBindObject(GL_WINDOW_TARGET, 0);
 
 **缓冲对象的使用**
 
-### VAO、VBO、EBO 
+## VAO、VBO、EBO 
 
 一个 vao 对应多个 vbo, 一个 ebo
 
@@ -66,7 +66,7 @@ glBindObject(GL_WINDOW_TARGET, 0);
 
 `glVertexAttribPointer` 把前绑定到 目标 `GL_ARRAY_BUFFER` 的 vbo，与当前绑定 vao 关联，为其指定 vbo 中的数据，并指明如何解释 vbo 中的数据 (每组数据大小，类型等信息)，`glEnableVertexAttribArray` 和 `glDisableVertexAttribArray` 用于打开或关闭 当前绑定的 vao 的某个属性
 
-### OpenGL的上下文
+## OpenGL 的上下文
 
 OpenGL自身是一个巨大的状态机(State Machine)：一系列的变量描述OpenGL此刻应当如何运行。OpenGL的状态通常被称为OpenGL上下文(Context)。我们通常使用如下途径去更改OpenGL状态：设置选项，操作缓冲。最后，我们使用当前OpenGL上下文来渲染。
 
@@ -92,7 +92,7 @@ int main()
 }
 ```
 
-### 渲染管线
+## 渲染管线
 
 ```mermaid
 graph LR
@@ -101,13 +101,31 @@ E(图元装配)-->F(剪切)-->G(光栅化)-->H(片元着色)-->I(逐片元的操
 
 ```
 
-## 着色器
+## 基本原理
+
+[StarryThrone - 简书 ](https://www.jianshu.com/u/1dac072408f5)
+
+[Synchronization - OpenGL Wiki ](https://www.khronos.org/opengl/wiki/Synchronization)
+
+OpenGL 命令是异步的，但是表现出的是和同步一样的
+
+OpenGL 命令有三个状态 
+
+- `unissued` 驱动还未提交命令给硬件
+- `issued` 驱动已经提交命令给硬件，也就是已经在 GPU 的命令队列中，但命令还未执行完成
+- `complete` 命令已经执行完成
+
+# 着色器
+
+## 计算着色器
+
+1. 没有输入输入
+2. 输入输入借助 texture、image、SSBO 实现
+3. 执行次数由用户定义
 
 
 
-
-
-### GLSL
+# GLSL
 
 ## OpenGL绘制方式
 
@@ -125,9 +143,9 @@ glDrawArray
 
 glDrawElements
 
-## 坐标系统
+# 坐标系统
 
-### 坐标和空间
+## 坐标和空间
 
 **局部空间/物体空间**
 
@@ -156,7 +174,7 @@ $$
 
 **屏幕坐标**
 
-### 变换
+## 变换
 
 从模型数据到屏幕上的像素经历了**用户变换**、**透视除法**、**视口变换**
 
@@ -175,6 +193,20 @@ $$
 OpenGL 使用 `glViewPort` 内部的参数来将**标准化设备坐标映**射到**屏幕坐标**，每个坐标都关联了一个屏幕上的点
 
 `glViewPort` 指定的坐标，坐标原点在屏幕右下角
+
+
+
+# OpenGL ES
+
+## Android
+
+Android 提供框架 API 和 NDK 来支持 OpenGL
+
+android.opengl.*
+
+GLSurfaceView
+
+[OpenGL ES  | Android 开发者 ](https://developer.android.google.cn/guide/topics/graphics/opengl?hl=zh-cn)
 
 
 
