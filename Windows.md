@@ -12,6 +12,10 @@ Windows 商店可以直接获取
 
 [适用于 Linux 的 Windows 子系统文档 | Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/)
 
+处理文件权限问题
+
+[Chmod/Chown WSL Improvements - Windows Command Line (microsoft.com)](https://devblogs.microsoft.com/commandline/chmod-chown-wsl-improvements/)
+
 ## PowerShell
 
 `$PROFILE` 类似于 .bashrc
