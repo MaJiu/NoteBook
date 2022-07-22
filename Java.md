@@ -128,11 +128,15 @@ public class InnerClass {
 
 `synchronized` 框中的代码为 **临界区**
 
+### Java 锁
+
 可重入锁
 
 [synchronized锁定的到底是什么？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/57794716?sort=created)
 
 [synchronized详解 -l 三分恶 - 博客园 (cnblogs.com)](https://www.cnblogs.com/three-fighter/p/14396208.html)
+
+[不可不说的Java“锁”事 - 美团技术团队 (meituan.com)](https://tech.meituan.com/2018/11/15/java-lock.html)
 
 ### Java 内存模型 JMM
 
