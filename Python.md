@@ -51,6 +51,33 @@ from <module_name> import <member> # 导入指定的变量、函数、类 后导
 
 ## 图像处理 
 
-### Pillow 库
+### Pillow
 
 [Pillow — Pillow (PIL Fork) 9.1.1 documentation](https://pillow.readthedocs.io/en/stable/index.html)
+
+### OpenCV
+
+[opencv-python · PyPI](https://pypi.org/project/opencv-python/)
+
+[OpenCV: OpenCV modules](https://docs.opencv.org/4.x/)
+
+### OCR-pytesseract
+
+[pytesseract · PyPI](https://pypi.org/project/pytesseract/)
+
+## 辅助工具
+
+### 进度条
+
+tqdm
+
+[tqdm documentation](https://tqdm.github.io/)
+
+https://github.com/tqdm/tqdm
+
+### 命令行参数解析
+
+fire
+
+
+
