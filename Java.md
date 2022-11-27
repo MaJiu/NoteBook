@@ -1,6 +1,10 @@
 [toc]
 
-### 嵌套类 Nested Class
+# Concept
+
+# 基本语法
+
+## 嵌套类 Nested Class
 
 在语法上，定义在另一个类中的类被成为嵌套类
 
@@ -8,7 +12,7 @@
 
 > Nested classes are divided into two categories: non-static and static. Non-static nested classes are called *inner classes*. Nested classes that are declared `static` are called *static nested classes*.
 
-#### 非静态嵌套类 inner classes
+### 非静态嵌套类 inner classes
 
 不能单独存在，隐式地持有外部类的引用
 
@@ -17,9 +21,9 @@ OuterClass outerObject = new OuterClass();
 OuterClass.InnerClass innerObject = outerObject.new InnerClass();
 ```
 
-##### 	局部内部类 local classes 
+#### 	局部内部类 local classes 
 
-##### 	匿名类 anonymous classes
+#### 	匿名类 anonymous classes
 
 匿名类定义是一个**表达式**
 
@@ -49,7 +53,7 @@ public class Test {
 }
 ```
 
-#### 静态内部类 static nested classes
+### 静态内部类 static nested classes
 
 ### Lambda Expression
 
@@ -106,9 +110,40 @@ public class InnerClass {
 }
 ```
 
+## Annotation
 
+```java
+// predefined annotaion
+@Override @Deprecated @SuppressWarnings @SafeVarargs @FunctionalInterface
 
-### Java 多线程
+// define annotaion
+@interface ClassPreamble {
+   String author();
+   String date();
+   int currentRevision() default 1;
+   String lastModified() default "N/A";
+   String lastModifiedBy() default "N/A";
+   // Note use of array
+   String[] reviewers();
+}
+```
+
+> Annotations that apply to other annotations are called *meta-annotations*. 
+
+```java
+@Retention // RetentionPolicy.SOURCE RetentionPolicy.CLASS RetentionPolicy.RUNTIME
+@Documented
+@Target
+@Inherited @Repeatable
+```
+
+# 反射
+
+# Stream 流
+
+# 集合框架
+
+# 并发编程
 
 线程之间的共享变量要使用 `volatile` 关键字
 
@@ -116,7 +151,7 @@ public class InnerClass {
 ２）**不保证原子性**
 ３）**禁止指令重排**
 
-`stop` 方法已经废除
+`Thread.stop` 方法已经废除
 
 **守护线程**
 
@@ -146,6 +181,12 @@ public class InnerClass {
 
 sleep 也可以使得一个线程对变量的修改对另一个线程可见
 
-### 参考资料
+# 参考资料
 
 [Trail: Learning the Java Language (The Java™ Tutorials) (oracle.com)](https://docs.oracle.com/javase/tutorial/java/index.html)
+
+[Learn Java - Dev.java](https://dev.java/learn/)
+
+[Home: Java Platform, Standard Edition (Java SE) 8 Release 8 (oracle.com)](https://docs.oracle.com/javase/8/)
+
+[Java Documentation - Get Started (oracle.com)](https://docs.oracle.com/en/java/)
