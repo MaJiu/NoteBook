@@ -49,3 +49,11 @@ Modul 管理
 ## GVim
 
 # 使用技巧
+
+[Sysinternals Utilities - Sysinternals | Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/)
+
+如何查看哪个进程在占用 A 文件
+
+如何优雅地让 C 盘不再那么红？
+
+[Download WizTree (diskanalyzer.com)](https://www.diskanalyzer.com/download)

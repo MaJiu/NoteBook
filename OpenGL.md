@@ -107,6 +107,8 @@ E(图元装配)-->F(剪切)-->G(光栅化)-->H(片元着色)-->I(逐片元的操
 
 [Synchronization - OpenGL Wiki ](https://www.khronos.org/opengl/wiki/Synchronization)
 
+OpenGL 命令可以分为两部分，**glDraw* 绘制命令**，和**非 draw 命令**
+
 OpenGL 命令是异步的，但是表现出的是和同步一样的
 
 OpenGL 命令有三个状态 
@@ -114,6 +116,12 @@ OpenGL 命令有三个状态
 - `unissued` 驱动还未提交命令给硬件
 - `issued` 驱动已经提交命令给硬件，也就是已经在 GPU 的命令队列中，但命令还未执行完成
 - `complete` 命令已经执行完成
+
+`glFlush` 将所有未提交的命令都
+
+`glFinish` 等待所有已提交的命令执行完成
+
+`eglSwapBuffer` 调用后，会阻塞当前线程，直到 GPU 完成所有任务
 
 # 着色器
 
@@ -195,6 +203,34 @@ OpenGL 使用 `glViewPort` 内部的参数来将**标准化设备坐标映**射�
 `glViewPort` 指定的坐标，坐标原点在屏幕右下角
 
 
+
+# 纹理 Texture
+
+OpenGL中可以使用`glTexParameteriv`命令来设置纹理参数，其中可以设置`GL_TEXTURE_SWIZZLE_R`、`GL_TEXTURE_SWIZZLE_G`、`GL_TEXTURE_SWIZZLE_B`和`GL_TEXTURE_SWIZZLE_A`四个参数，分别对应着纹理的四个分量。例如，可以使用以下代码将红色和蓝色通道对调
+
+```c
+GLint swizzleMask[] = {GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA};
+glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzleMask);
+```
+
+其中，`GL_TEXTURE_2D`是纹理的目标，`GL_TEXTURE_SWIZZLE_RGBA`表示对纹理的四个分量进行设置。`swizzleMask`数组中的元素依次对应纹理的RGBA分量，因此这里的设置表示将红色通道映射到蓝色分量，绿色通道映射到绿色分量，蓝色通道映射到红色分量，透明度通道映射到透明度分量。
+
+
+
+# 混合 Blend
+
+**source RGBA**
+
+**destination RGBA**(RGBA values that are already in the frame buffer)
+
+$F_{src}$ 和 $F_{dst}$ 由 `glBlendFunc` 或 `glBlendFuncSeparate`指定，具体参数参考官网文档
+$$
+C_{result} = C_{src} *F_{src} + C_{dst}*F_{dst}
+$$
+
+`glBlendEquation` 可以修改上述方程的运算符
+
+> Transparency is best implemented using blend function (`GL_SRC_ALPHA`, `GL_ONE_MINUS_SRC_ALPHA`) with primitives sorted from farthest to nearest. Note that this transparency calculation does not require the presence of alpha bitplanes in the frame buffer.
 
 # OpenGL ES
 
