@@ -319,6 +319,12 @@ cls Count Leading Sign Bits.
 
 将数据从一个寄存器复制到另一个寄存器，或将一个立即数写到一个寄存器
 
+```asm
+mov r1, r0 # 将 r0 复制到 r1
+```
+
+
+
 #### System control and other
 
 ###  Application Binary Interface
