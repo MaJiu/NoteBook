@@ -412,6 +412,10 @@ constexpr 函数的返回类型和所有形参类型都是**字面值类型**，
 
 ### 可调用对象
 
+[C++ named requirements: FunctionObject - cppreference.com](https://en.cppreference.com/w/cpp/named_req/FunctionObject)
+
+[C++ named requirements: Callable - cppreference.com](https://en.cppreference.com/w/cpp/named_req/Callable)
+
 函数，函数指针，[lambda表达式](###lambda 表达式)，重载了函数调用运算符的类，[bind函数](###bind 函数) 创建的对象
 
 ```C++
@@ -1460,6 +1464,16 @@ regex	regex_match	regex_search	regex_replace	sregex_iterator	smatch	ssub_match
 引擎 + 分布
 
 default_random_engine
+
+### thread
+
+```c+=
+std::thread;
+std::future<>;
+std::packaged_task<>;
+std::promise<>
+std::async;
+```
 
 ## 其他
 
