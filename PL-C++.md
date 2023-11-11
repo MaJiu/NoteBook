@@ -1539,7 +1539,7 @@ int (&ref_function)(int, int) = add;
 
 #### 隐式类型转换
 
-**整形提升** 把小整数类型转换为较大的整数类型
+**整型提升** 把小整数类型转换为较大的整数类型
 
 对于 `bool` `char` `signed char` `unsigned char` `short` `unsigned short` 等类型只要他们所有可能的值能存在 `int` 里，他们就会提升成 `int` 类型
 
