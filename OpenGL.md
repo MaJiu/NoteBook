@@ -246,7 +246,47 @@ GLSurfaceView
 
 
 
-## 参考网站
+# EGL
+
+![](pic/EGL-Overview.svg)
+
+
+
+这一节信息主要来自  *EGL Spec 1.5*
+
+| EGL Type   | Note                                                         |
+| ---------- | ------------------------------------------------------------ |
+| EGLContext |                                                              |
+| EGLDisplay | 对物理屏幕的抽象，所有 EGL 对象都会和一个 EGLDisplay 关联    |
+| EGLSurface | render 的目标，包含 window、pixmap、pbuffer 三种类型的 surface |
+
+widnow surface 和 pixmap surface 是平台相关的，他们都要对应的 native surface 和 native pixmap
+
+pbuffer surface 由 EGL 内部维护分配 Buffer
+
+
+
+window surface 和 pbuffer surface 一般使用  back buffered 的 渲染模式，对于 widnow surface 由 EGL 内部维护 color buffer 然后，绘制完成后 eglSwapBuffer copy 到对应 widnow 中，pbuffer 本身由 EGL 维护，没有关联的 window，所以无须 copy buffer
+
+pixmap surface 一般使用 single buffered 的渲染模式，coloer buffer 由平台提供，OpenGL 会直接渲染到该 buffer 中
+
+
+
+eglSwapBuffer = glFlush + post buffer
+
+## 渲染模式(Rendering Models)
+
+back buffered 
+
+single buffered
+
+## 错误处理
+
+## 初始化
+
+## 同步
+
+# 参考网站
 
 https://learnopengl-cn.github.io/
 
